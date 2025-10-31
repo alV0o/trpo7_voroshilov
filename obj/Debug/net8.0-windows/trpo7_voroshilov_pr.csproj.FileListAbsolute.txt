@@ -18,3 +18,4 @@ C:\Users\st310-08\Desktop\Voroshilov\trpo7_voroshilov_pr\obj\Debug\net8.0-window
 C:\Users\st310-08\Desktop\Voroshilov\trpo7_voroshilov_pr\obj\Debug\net8.0-windows\trpo7_voroshilov_pr.pdb
 C:\Users\st310-08\Desktop\Voroshilov\trpo7_voroshilov_pr\obj\Debug\net8.0-windows\trpo7_voroshilov_pr.genruntimeconfig.cache
 C:\Users\st310-08\Desktop\Voroshilov\trpo7_voroshilov_pr\obj\Debug\net8.0-windows\ref\trpo7_voroshilov_pr.dll
+C:\Users\st310-08\Desktop\Voroshilov\trpo7_voroshilov_pr\obj\Debug\net8.0-windows\trpo7_voroshilov_pr.sourcelink.json

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace trpo7_voroshilov_pr
@@ -13,5 +14,10 @@ namespace trpo7_voroshilov_pr
         public string MiddleName { get; set; }
         public string Specialisation{ get; set; }
         public string Password{ get; set; }
+        [JsonIgnore] 
+        public string RepeatPassword{ get; set; }
+        [JsonIgnore]
+        public int ID{ get; set; }
+
     }
 }
