@@ -18,29 +18,38 @@ namespace trpo7_voroshilov_pr
     /// </summary>
     public partial class MainWindow : Window
     {
-        Doctor doctor = new Doctor();
-
+        Doctor regDoctor = new Doctor();
+        Doctor loadDoctor = new Doctor();
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = doctor;
+            RegisterDoctor.DataContext = regDoctor;
+            LoginDoctor.DataContext = loadDoctor;
+            InfoDoctor.DataContext = loadDoctor;
         }
 
         private void RegisterNewDoctor(object sender, RoutedEventArgs e)
         {
-            if (doctor.Password == doctor.RepeatPassword)
+            if (regDoctor.Password.Trim() != ""&& regDoctor.Name.Trim() != "" && regDoctor.LastName.Trim() != "" && regDoctor.Specialisation.Trim() != "" && regDoctor.MiddleName.Trim() != "")
             {
-                doctor.ID = GenerateUniqueId();
+                if (regDoctor.Password == regDoctor.RepeatPassword)
+                {
 
-                string jsonString = JsonSerializer.Serialize(doctor);
-                string fileName = $"D_{doctor.ID.ToString().PadLeft(5,'0')}.json";
-                File.WriteAllText(fileName, jsonString);
+                    regDoctor.ID = Convert.ToInt32(GenerateUniqueId());
+                    string jsonString = JsonSerializer.Serialize(regDoctor);
+                    string fileName = $"D_{regDoctor.ID.ToString().PadLeft(5, '0')}.json";
+                    File.WriteAllText(fileName, jsonString);
 
-                MessageBox.Show("Успешно сохранен");
+                    MessageBox.Show("Успешно сохранен");
+                }
+                else
+                {
+                    MessageBox.Show("Неверный пароль!");
+                }
             }
             else
             {
-                MessageBox.Show("Неверный пароль!");
+                MessageBox.Show("Заполните все поля!");
             }
         }
 
@@ -52,11 +61,39 @@ namespace trpo7_voroshilov_pr
             {
                 if (!File.Exists($"D_{i.ToString().PadLeft(5, '0')}.json"))
                 {
-                    return $"{i.ToString().PadLeft(5,'0')}.json";
+                    return i.ToString().PadLeft(5,'0');
                 }
                 i++;
             }
             return "";
+        }
+
+        private void Login(object sender, RoutedEventArgs e)
+        {
+            string id = loadDoctor.ID.ToString().PadLeft(5,'0');
+            if (File.Exists($"D_{id}.json"))
+            {
+                string jsonString = File.ReadAllText($"D_{id}.json");
+
+                Doctor temp = JsonSerializer.Deserialize<Doctor>(jsonString);
+
+                if (temp.Password == loadDoctor.Password)
+                {
+                    loadDoctor.Name = temp.Name;
+                    loadDoctor.Password = temp.Password;
+                    loadDoctor.MiddleName = temp.MiddleName;
+                    loadDoctor.LastName = temp.LastName;
+                    loadDoctor.Specialisation = temp.Specialisation;
+                }
+                else
+                {
+                    MessageBox.Show("Неверный пароль");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Такого ID нет");
+            }
         }
     }
 }
