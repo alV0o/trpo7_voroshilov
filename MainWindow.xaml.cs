@@ -20,12 +20,18 @@ namespace trpo7_voroshilov_pr
     {
         Doctor regDoctor = new Doctor();
         Doctor loadDoctor = new Doctor();
+        Patient addPatient = new Patient();
+        Patient updatePatient = new Patient();
+
         public MainWindow()
         {
             InitializeComponent();
             RegisterDoctor.DataContext = regDoctor;
             LoginDoctor.DataContext = loadDoctor;
             InfoDoctor.DataContext = loadDoctor;
+            AddPatient.DataContext = addPatient;
+            UpdatePatient.DataContext = updatePatient;
+            Appointment.DataContext = updatePatient;
         }
 
         private void RegisterNewDoctor(object sender, RoutedEventArgs e)
@@ -35,7 +41,7 @@ namespace trpo7_voroshilov_pr
                 if (regDoctor.Password == regDoctor.RepeatPassword)
                 {
 
-                    regDoctor.ID = Convert.ToInt32(GenerateUniqueId());
+                    regDoctor.ID = Convert.ToInt32(GenerateUniqueId(5, 'D'));
                     string jsonString = JsonSerializer.Serialize(regDoctor);
                     string fileName = $"D_{regDoctor.ID.ToString().PadLeft(5, '0')}.json";
                     File.WriteAllText(fileName, jsonString);
@@ -54,14 +60,15 @@ namespace trpo7_voroshilov_pr
         }
 
 
-        private string GenerateUniqueId()
+        private string GenerateUniqueId(int countNums, char symbol)
         {
             int i = 1;
-            while (i <= 99999)
+            int maxValue = Convert.ToInt32(9.ToString().PadLeft(countNums, '9'));
+            while (i <= maxValue)
             {
-                if (!File.Exists($"D_{i.ToString().PadLeft(5, '0')}.json"))
+                if (!File.Exists($"{symbol}_{i.ToString().PadLeft(countNums, '0')}.json"))
                 {
-                    return i.ToString().PadLeft(5,'0');
+                    return i.ToString().PadLeft(countNums,'0');
                 }
                 i++;
             }
@@ -70,10 +77,10 @@ namespace trpo7_voroshilov_pr
 
         private void Login(object sender, RoutedEventArgs e)
         {
-            string id = loadDoctor.ID.ToString().PadLeft(5,'0');
-            if (File.Exists($"D_{id}.json"))
+            string id = $"D_{loadDoctor.ID.ToString().PadLeft(5,'0')}.json";
+            if (File.Exists(id))
             {
-                string jsonString = File.ReadAllText($"D_{id}.json");
+                string jsonString = File.ReadAllText(id);
 
                 Doctor temp = JsonSerializer.Deserialize<Doctor>(jsonString);
 
@@ -93,6 +100,87 @@ namespace trpo7_voroshilov_pr
             else
             {
                 MessageBox.Show("Такого ID нет");
+            }
+        }
+
+        private void AddNewPatient(object sender, RoutedEventArgs e)
+        {
+            if (addPatient.Name.Trim() != "" && addPatient.LastName.Trim() != "" && addPatient.MiddleName.Trim() != "" && addPatient.Birthday.Trim() != "")
+            {
+                addPatient.ID = Convert.ToInt32(GenerateUniqueId(7, 'P'));
+                
+                string jsonString = JsonSerializer.Serialize(addPatient);
+                string fileName = $"P_{addPatient.ID.ToString().PadLeft(7, '0')}.json";
+                File.WriteAllText(fileName, jsonString);
+
+                MessageBox.Show("Успешно сохранен");
+            }
+            else
+            {
+                MessageBox.Show("Заполните все поля!");
+            }
+        }
+
+        private void FindPatient(object sender, RoutedEventArgs e)
+        {
+            string fileName = $"P_{updatePatient.ID.ToString().PadLeft(7, '0')}.json";
+            if (File.Exists(fileName))
+            {
+                string jsonString = File.ReadAllText(fileName);
+
+                Patient temp = JsonSerializer.Deserialize<Patient>(jsonString);
+
+                updatePatient.Name = temp.Name;
+                updatePatient.LastName = temp.LastName;
+                updatePatient.MiddleName = temp.MiddleName;
+                updatePatient.Birthday = temp.Birthday;
+                updatePatient.LastAppointment = temp.LastAppointment;
+                updatePatient.LastDoctor = temp.LastDoctor;
+                updatePatient.Diagnosis = temp.Diagnosis;
+                updatePatient.Recomendations = temp.Recomendations;
+                UpdateLastDoctorObj(updatePatient);
+
+            }
+            else
+            {
+                MessageBox.Show("Такого ID нет");
+            }
+        }
+
+        private void ResetPatient(object sender, RoutedEventArgs e)
+        {
+            string fileName = $"P_{updatePatient.ID.ToString().PadLeft(7, '0')}.json";
+            string jsonString = File.ReadAllText(fileName);
+
+            Patient temp = JsonSerializer.Deserialize<Patient>(jsonString);
+
+            updatePatient.Name = temp.Name;
+            updatePatient.LastName = temp.LastName;
+            updatePatient.MiddleName = temp.MiddleName;
+            updatePatient.Birthday = temp.Birthday;
+        }
+
+        private void SaveChanges(object sender, RoutedEventArgs e)
+        {
+            string fileName = $"P_{updatePatient.ID.ToString().PadLeft(7, '0')}.json";
+            string jsonString = JsonSerializer.Serialize(updatePatient);
+            File.WriteAllText(fileName, jsonString);
+        }
+
+        private void UpdateLastDoctorObj(Patient patient)
+        {
+            string fileName = $"D_{patient.LastDoctor.ToString().PadLeft(5, '0')}.json";
+            if (File.Exists(fileName))
+            {
+                string jsonString = File.ReadAllText(fileName);
+
+                Doctor temp = JsonSerializer.Deserialize<Doctor>(jsonString);
+
+                patient.LastDoctorObj.Name = temp.Name;
+                patient.LastDoctorObj.Password = temp.Password;
+                patient.LastDoctorObj.MiddleName = temp.MiddleName;
+                patient.LastDoctorObj.LastName = temp.LastName;
+                patient.LastDoctorObj.Specialisation = temp.Specialisation;
             }
         }
     }
