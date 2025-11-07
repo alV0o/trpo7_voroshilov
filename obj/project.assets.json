@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\st310-08\\Desktop\\Voroshilov\\trpo7_voroshilov\\trpo7_voroshilov_pr.csproj",
+      "projectUniqueName": "C:\\Users\\st310-08\\Desktop\\Voroshilov\\trpo7_voroshilov_pr\\trpo7_voroshilov_pr.csproj",
       "projectName": "trpo7_voroshilov_pr",
-      "projectPath": "C:\\Users\\st310-08\\Desktop\\Voroshilov\\trpo7_voroshilov\\trpo7_voroshilov_pr.csproj",
+      "projectPath": "C:\\Users\\st310-08\\Desktop\\Voroshilov\\trpo7_voroshilov_pr\\trpo7_voroshilov_pr.csproj",
       "packagesPath": "C:\\Users\\st310-08\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\st310-08\\Desktop\\Voroshilov\\trpo7_voroshilov\\obj\\",
+      "outputPath": "C:\\Users\\st310-08\\Desktop\\Voroshilov\\trpo7_voroshilov_pr\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

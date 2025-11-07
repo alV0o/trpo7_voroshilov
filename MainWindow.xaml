@@ -12,7 +12,12 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
         <DockPanel Grid.Column="0"
+                   Grid.Row="0"
                    LastChildFill="False">
             <Grid DockPanel.Dock="Top"
                   x:Name="RegisterDoctor">
@@ -322,11 +327,38 @@
                     <Run Text="{Binding LastDoctorObj.LastName}"/>
                     <Run Text="{Binding LastDoctorObj.MiddleName}"/>
                 </TextBlock>
+                <Label Grid.Row="4"
+                       Grid.Column="0"
+                       Content="Диагноз:"/>
+                <TextBox Grid.Row="4"
+                         Grid.Column="1"
+                         Text="{Binding Diagnosis, Mode=TwoWay}"/>
+                <Label Grid.Row="5"
+                       Grid.Column="0"
+                       Content="Рекомендации:"/>
+                <TextBox Grid.Row="5"
+                         Grid.Column="1"
+                         Text="{Binding Recomendations, Mode=TwoWay}"/>
+
                 <Button Grid.Row="6"
                         Grid.Column="0"
-                        Grid.ColumnSpan="2"/>
+                        Grid.ColumnSpan="2"
+                        Content="Зарегистрировать прием"
+                        Click="RegisterAppointment"/>
             </Grid>
             
         </DockPanel>
+        <WrapPanel Grid.Row="1"
+                   Grid.ColumnSpan="3"
+                   Grid.Column="0"
+                   Background="LightGray"
+                   x:Name="StatusBar">
+            <Label Content="Всего JSON файлов:"/>
+            <Label Content="{Binding CountAll}"/>
+            <Label Content="Всего докторов:"/>
+            <Label Content="{Binding CountDoctors}"/>
+            <Label Content="Всего пациентов:"/>
+            <Label Content="{Binding CountPatients}"/>
+        </WrapPanel>
     </Grid>
 </Window>

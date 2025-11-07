@@ -22,6 +22,7 @@ namespace trpo7_voroshilov_pr
         Doctor loadDoctor = new Doctor();
         Patient addPatient = new Patient();
         Patient updatePatient = new Patient();
+        JSONs jsons = new JSONs();
 
         public MainWindow()
         {
@@ -32,6 +33,23 @@ namespace trpo7_voroshilov_pr
             AddPatient.DataContext = addPatient;
             UpdatePatient.DataContext = updatePatient;
             Appointment.DataContext = updatePatient;
+
+
+            int i = 1;
+            while (i <= 9999999)
+            {
+                if (File.Exists($"D_{i.ToString().PadLeft(5, '0')}.json"))
+                {
+                    jsons.CountDoctors++;
+                }
+                if (File.Exists($"P_{i.ToString().PadLeft(7, '0')}.json"))
+                {
+                    jsons.CountPatients++;
+                }
+                i++;
+            }
+            jsons.CountAll = jsons.CountDoctors + jsons.CountPatients;
+            StatusBar.DataContext = jsons;
         }
 
         private void RegisterNewDoctor(object sender, RoutedEventArgs e)
@@ -46,6 +64,7 @@ namespace trpo7_voroshilov_pr
                     string fileName = $"D_{regDoctor.ID.ToString().PadLeft(5, '0')}.json";
                     File.WriteAllText(fileName, jsonString);
 
+                    //jsons.CountDoctors++;
                     MessageBox.Show("Успешно сохранен");
                 }
                 else
@@ -112,6 +131,7 @@ namespace trpo7_voroshilov_pr
                 string jsonString = JsonSerializer.Serialize(addPatient);
                 string fileName = $"P_{addPatient.ID.ToString().PadLeft(7, '0')}.json";
                 File.WriteAllText(fileName, jsonString);
+                //jsons.CountPatients++;
 
                 MessageBox.Show("Успешно сохранен");
             }
@@ -182,6 +202,27 @@ namespace trpo7_voroshilov_pr
                 patient.LastDoctorObj.LastName = temp.LastName;
                 patient.LastDoctorObj.Specialisation = temp.Specialisation;
             }
+            else
+            {
+                patient.LastDoctorObj.Name = "-";
+                patient.LastDoctorObj.MiddleName="-";
+                patient.LastDoctorObj.LastName = "-";
+            }
+        }
+
+        private void RegisterAppointment(object sender, RoutedEventArgs e)
+        {
+            if (loadDoctor.ID != 0)
+            {
+                updatePatient.LastDoctor = loadDoctor.ID;
+                updatePatient.LastAppointment = DateTime.Now.ToString();
+                UpdateLastDoctorObj(updatePatient);
+                
+                string fileName = $"P_{updatePatient.ID.ToString().PadLeft(7, '0')}.json";
+                string jsonString = JsonSerializer.Serialize(updatePatient);
+                File.WriteAllText(fileName, jsonString);
+            }
+            else MessageBox.Show("Нужно войти в аккаунт доктора!");
         }
     }
 }
