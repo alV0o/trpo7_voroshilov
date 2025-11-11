@@ -8,23 +8,23 @@
     "net8.0-windows7.0": []
   },
   "packageFolders": {
-    "C:\\Users\\st310-08\\.nuget\\packages\\": {},
+    "C:\\Users\\voros\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\st310-08\\Desktop\\Voroshilov\\trpo7_voroshilov_pr\\trpo7_voroshilov_pr.csproj",
+      "projectUniqueName": "D:\\ProgrammingAll\\3kurs\\trpo7_voroshilov\\trpo7_voroshilov_pr.csproj",
       "projectName": "trpo7_voroshilov_pr",
-      "projectPath": "C:\\Users\\st310-08\\Desktop\\Voroshilov\\trpo7_voroshilov_pr\\trpo7_voroshilov_pr.csproj",
-      "packagesPath": "C:\\Users\\st310-08\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\st310-08\\Desktop\\Voroshilov\\trpo7_voroshilov_pr\\obj\\",
+      "projectPath": "D:\\ProgrammingAll\\3kurs\\trpo7_voroshilov\\trpo7_voroshilov_pr.csproj",
+      "packagesPath": "C:\\Users\\voros\\.nuget\\packages\\",
+      "outputPath": "D:\\ProgrammingAll\\3kurs\\trpo7_voroshilov\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\st310-08\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\voros\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -76,7 +76,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.305/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.306/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

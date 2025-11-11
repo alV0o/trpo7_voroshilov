@@ -34,19 +34,21 @@ namespace trpo7_voroshilov_pr
             UpdatePatient.DataContext = updatePatient;
             Appointment.DataContext = updatePatient;
 
-
-            int i = 1;
-            while (i <= 9999999)
+            for(int i = 1; i <= 99999; i++)
             {
                 if (File.Exists($"D_{i.ToString().PadLeft(5, '0')}.json"))
                 {
                     jsons.CountDoctors++;
                 }
+                else break;
+            }
+            for(int i = 1; i <= 9999999; i++)
+            {
                 if (File.Exists($"P_{i.ToString().PadLeft(7, '0')}.json"))
                 {
                     jsons.CountPatients++;
                 }
-                i++;
+                else break;
             }
             jsons.CountAll = jsons.CountDoctors + jsons.CountPatients;
             StatusBar.DataContext = jsons;
@@ -64,7 +66,8 @@ namespace trpo7_voroshilov_pr
                     string fileName = $"D_{regDoctor.ID.ToString().PadLeft(5, '0')}.json";
                     File.WriteAllText(fileName, jsonString);
 
-                    //jsons.CountDoctors++;
+                    jsons.CountDoctors++;
+                    jsons.CountAll++;
                     MessageBox.Show("Успешно сохранен");
                 }
                 else
@@ -131,7 +134,8 @@ namespace trpo7_voroshilov_pr
                 string jsonString = JsonSerializer.Serialize(addPatient);
                 string fileName = $"P_{addPatient.ID.ToString().PadLeft(7, '0')}.json";
                 File.WriteAllText(fileName, jsonString);
-                //jsons.CountPatients++;
+                jsons.CountPatients++;
+                jsons.CountAll++;
 
                 MessageBox.Show("Успешно сохранен");
             }
