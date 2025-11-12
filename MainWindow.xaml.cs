@@ -147,27 +147,34 @@ namespace trpo7_voroshilov_pr
 
         private void FindPatient(object sender, RoutedEventArgs e)
         {
-            string fileName = $"P_{updatePatient.ID.ToString().PadLeft(7, '0')}.json";
-            if (File.Exists(fileName))
+            if (loadDoctor.ID != 0)
             {
-                string jsonString = File.ReadAllText(fileName);
+                string fileName = $"P_{updatePatient.ID.ToString().PadLeft(7, '0')}.json";
+                if (File.Exists(fileName))
+                {
+                    string jsonString = File.ReadAllText(fileName);
 
-                Patient temp = JsonSerializer.Deserialize<Patient>(jsonString);
+                    Patient temp = JsonSerializer.Deserialize<Patient>(jsonString);
 
-                updatePatient.Name = temp.Name;
-                updatePatient.LastName = temp.LastName;
-                updatePatient.MiddleName = temp.MiddleName;
-                updatePatient.Birthday = temp.Birthday;
-                updatePatient.LastAppointment = temp.LastAppointment;
-                updatePatient.LastDoctor = temp.LastDoctor;
-                updatePatient.Diagnosis = temp.Diagnosis;
-                updatePatient.Recomendations = temp.Recomendations;
-                UpdateLastDoctorObj(updatePatient);
+                    updatePatient.Name = temp.Name;
+                    updatePatient.LastName = temp.LastName;
+                    updatePatient.MiddleName = temp.MiddleName;
+                    updatePatient.Birthday = temp.Birthday;
+                    updatePatient.LastAppointment = temp.LastAppointment;
+                    updatePatient.LastDoctor = temp.LastDoctor;
+                    updatePatient.Diagnosis = temp.Diagnosis;
+                    updatePatient.Recomendations = temp.Recomendations;
+                    UpdateLastDoctorObj(updatePatient);
 
+                }
+                else
+                {
+                    MessageBox.Show("Такого ID нет");
+                }
             }
             else
             {
-                MessageBox.Show("Такого ID нет");
+                MessageBox.Show("Войдите в аккаунт доктора");
             }
         }
 
