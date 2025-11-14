@@ -1,0 +1,61 @@
+﻿<Page x:Class="trpo7_voroshilov_pr.Pages.EditInfoPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:trpo7_voroshilov_pr.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="EditInfoPage"
+      Background="White">
+    <Grid x:Name="UpdatePatient"
+          Margin="0,30,0,0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+
+        <Label Grid.Row="0"
+           Grid.Column="0"
+           Content="Изменить фамилию:"/>
+        <Label Grid.Row="1"
+           Grid.Column="0"
+           Content="Изменить имя:"/>
+        <Label Grid.Row="2"
+           Grid.Column="0"
+           Content="Изменить отчество:"/>
+        <Label Grid.Row="3"
+           Grid.Column="0"
+           Content="Изменить дату рождения:"/>
+        <Button Grid.Column="0"
+            Grid.Row="4"
+            Grid.ColumnSpan="2"
+            Content="Сбросить"
+            Click="ResetPatient"/>
+        <Button Grid.Column="0"
+            Grid.Row="5"
+            Grid.ColumnSpan="2"
+            Content="Сохранить"
+            Click="SaveChanges"/>
+        <TextBox Grid.Row="0"
+             Grid.Column="1"
+             Text="{Binding Name, Mode=TwoWay}"/>
+        <TextBox Grid.Row="1"
+             Grid.Column="1"
+             Text="{Binding LastName, Mode=TwoWay}"/>
+        <TextBox Grid.Row="2"
+             Grid.Column="1"
+             Text="{Binding MiddleName, Mode=TwoWay}"/>
+        <TextBox Grid.Row="3"
+             Grid.Column="1"
+             Text="{Binding Birthday, Mode=TwoWay}"/>
+    </Grid>
+</Page>

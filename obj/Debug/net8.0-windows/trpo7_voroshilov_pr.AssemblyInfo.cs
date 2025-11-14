@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("trpo7_voroshilov_pr")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5f33b99c9ffd52a57909c5f9939a69b5fa234599")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+76778be6f06e4534590c21486bbe33d6613b8e9a")]
 [assembly: System.Reflection.AssemblyProductAttribute("trpo7_voroshilov_pr")]
 [assembly: System.Reflection.AssemblyTitleAttribute("trpo7_voroshilov_pr")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

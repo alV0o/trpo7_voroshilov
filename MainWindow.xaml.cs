@@ -27,6 +27,11 @@ namespace trpo7_voroshilov_pr
         public MainWindow()
         {
             InitializeComponent();
+            MainFrame.Navigate(new Pages.LoginPage());
+
+
+
+
             RegisterDoctor.DataContext = regDoctor;
             LoginDoctor.DataContext = loadDoctor;
             InfoDoctor.DataContext = loadDoctor;
@@ -95,34 +100,6 @@ namespace trpo7_voroshilov_pr
                 i++;
             }
             return "";
-        }
-
-        private void Login(object sender, RoutedEventArgs e)
-        {
-            string id = $"D_{loadDoctor.ID.ToString().PadLeft(5,'0')}.json";
-            if (File.Exists(id))
-            {
-                string jsonString = File.ReadAllText(id);
-
-                Doctor temp = JsonSerializer.Deserialize<Doctor>(jsonString);
-
-                if (temp.Password == loadDoctor.Password)
-                {
-                    loadDoctor.Name = temp.Name;
-                    loadDoctor.Password = temp.Password;
-                    loadDoctor.MiddleName = temp.MiddleName;
-                    loadDoctor.LastName = temp.LastName;
-                    loadDoctor.Specialisation = temp.Specialisation;
-                }
-                else
-                {
-                    MessageBox.Show("Неверный пароль");
-                }
-            }
-            else
-            {
-                MessageBox.Show("Такого ID нет");
-            }
         }
 
         private void AddNewPatient(object sender, RoutedEventArgs e)

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -63,7 +64,20 @@ namespace trpo7_voroshilov_pr
                 OnPropertyChanged();
             }
         }
-        private string _lastAppointment = "--.--.----";
+        private string _phoneNumber;
+        public string PhoneNumber
+        {
+            get
+            {
+                return _phoneNumber;
+            }
+            set
+            {
+                _phoneNumber = value;
+                OnPropertyChanged();
+            }
+        }
+        /*private string _lastAppointment = "--.--.----";
         public string LastAppointment 
         {
             get
@@ -114,7 +128,22 @@ namespace trpo7_voroshilov_pr
                 _recomendations = value;
                 OnPropertyChanged();
             }
+        }*/
+
+        private ObservableCollection<Appointment> _appointmentStories;
+        public ObservableCollection<Appointment> AppointmentStories
+        {
+            get
+            {
+                return _appointmentStories;
+            }
+            set
+            {
+                _appointmentStories = value;
+                OnPropertyChanged();
+            }
         }
+
         private int _id = 0; 
         [JsonIgnore]
         public int ID

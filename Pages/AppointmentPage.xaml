@@ -1,0 +1,73 @@
+﻿<Page x:Class="trpo7_voroshilov_pr.Pages.Appointment"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:trpo7_voroshilov_pr.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Appointment"
+      Background="White">
+    <Grid DockPanel.Dock="Top">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0"
+               Grid.ColumnSpan="2"
+               Grid.Column="0">
+            <Run Text="ФИО Пациента:"/>
+            <Run Text="{Binding Name}"/>
+            <Run Text="{Binding LastName}"/>
+            <Run Text="{Binding MiddleName}"/>
+        </TextBlock>
+        <TextBlock Grid.Row="1"
+               Grid.Column="0"
+               Grid.ColumnSpan="2">
+            <Run Text="Дата рождения:"/>
+            <Run Text="{Binding Birthday}"/>
+        </TextBlock>
+        <TextBlock Grid.Row="2"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="2">
+            <Run Text="Телефон:"/>
+            <Run Text=""/>
+        </TextBlock>
+        <Label Grid.Row="3"
+           Grid.Column="0"
+           Content="Диагноз:"/>
+        <TextBox Grid.Row="3"
+             Grid.Column="1"
+             Text="{Binding Diagnosis, Mode=TwoWay}"/>
+        <Label Grid.Row="4"
+           Grid.Column="0"
+           Content="Рекомендации:"/>
+        <TextBox Grid.Row="4"
+             Grid.Column="1"
+             Text="{Binding Recomendations, Mode=TwoWay}"/>
+
+        <Button Grid.Row="5"
+            Grid.Column="0"
+            Content="Зарегистрировать прием"
+            Click="RegisterAppointment"/>
+        <Button Grid.Row="5"
+            Grid.Column="1"
+            Content="Изменить информацию о пациенте"
+            />
+        <ListView Grid.Column="0"
+                  Grid.Row="6"
+                  Grid.ColumnSpan="2"
+                  BorderBrush="black">
+        </ListView>
+    </Grid>
+</Page>
